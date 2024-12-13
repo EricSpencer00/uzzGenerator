@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, send_file
 import os
 from werkzeug.utils import secure_filename
-from main_script import process_text, save_custom_dictionary, load_custom_dictionary
+from uzz import process_text, save_custom_dictionary, load_custom_dictionary
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('static/index.html')
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -52,7 +52,7 @@ def manage_dictionary():
             custom_dict[word.lower()] = replacement
             save_custom_dictionary(custom_dict, CUSTOM_DICT_PATH)
 
-    return render_template('manage_dictionary.html', dictionary=custom_dict)
+    return render_template('static/manage_dictionary.html', dictionary=custom_dict)
 
 @app.route('/manage_nouns', methods=['GET', 'POST'])
 def manage_nouns():
@@ -68,7 +68,7 @@ def manage_nouns():
             with open(NOUN_LIST_PATH, 'w') as file:
                 file.write('\n'.join(nouns))
 
-    return render_template('manage_nouns.html', nouns=nouns)
+    return render_template('static/manage_nouns.html', nouns=nouns)
 
 if __name__ == '__main__':
     app.run(debug=True)

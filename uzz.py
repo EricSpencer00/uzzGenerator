@@ -2,7 +2,7 @@ import re
 from collections import defaultdict
 
 # Utility functions
-def load_custom_dictionary(file_path="uzzGenerator/word_replacements.txt"):
+def load_custom_dictionary(file_path="./word_replacements.txt"):
     """Load a custom dictionary of replacements from a file."""
     replacements = {}
     try:
@@ -15,7 +15,7 @@ def load_custom_dictionary(file_path="uzzGenerator/word_replacements.txt"):
         print("Custom dictionary file not found. Continuing without it.")
     return replacements
 
-def save_custom_dictionary(replacements, file_path="uzzGenerator/word_replacements.txt"):
+def save_custom_dictionary(replacements, file_path="./word_replacements.txt"):
     """Save a custom dictionary of replacements to a file."""
     with open(file_path, "w") as file:
         for word, replacement in replacements.items():
@@ -40,7 +40,7 @@ def is_noun(word, word_set):
     """Basic check if a word is likely a noun using a predefined word set."""
     return word.lower() in word_set
 
-def process_text(file_path, output_path, custom_dict_path="uzzGenerator/word_replacements.txt", noun_list_path="uzzGenerator/nouns.txt"):
+def process_text(file_path, output_path, custom_dict_path="./word_replacements.txt", noun_list_path="uzzGenerator/nouns.txt"):
     """Process a text file, transforming nouns based on rules."""
     # Load the custom dictionary
     custom_dict = load_custom_dictionary(custom_dict_path)
@@ -80,8 +80,8 @@ def process_text(file_path, output_path, custom_dict_path="uzzGenerator/word_rep
 
 if __name__ == "__main__":
     # Example usage
-    input_file = "uzzGenerator/input.txt"
-    output_file = "uzzGenerator/output.txt"
+    input_file = "./input.txt"
+    output_file = "./output.txt"
 
     # Save a sample custom dictionary
     sample_dict = {"bro": "bruzz", "girls": "huzz", "unemployed": "unempluzz"}
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
     # Create a sample noun list
     sample_nouns = ["bro", "girls", "unemployed", "logo", "barnacle", "pumpernickle"]
-    with open("uzzGenerator/nouns.txt", "w") as file:
+    with open("./nouns.txt", "w") as file:
         file.write("\n".join(sample_nouns))
 
     process_text(input_file, output_file)
