@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Nouns</title>
+</head>
+<body>
+    <h1>Manage Nouns</h1>
+    <form action="/manage_nouns" method="post">
+        <input type="text" name="noun" placeholder="Noun" required>
+        <button type="submit">Add</button>
+    </form>
+    <h2>Current Nouns</h2>
+    <ul>
+        {% for noun in nouns %}
+            <li>{{ noun }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back</a>
+</body>
+</html>

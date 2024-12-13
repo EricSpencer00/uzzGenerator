@@ -1,0 +1,3 @@
+bro,bruzz
+girls,huzz
+unemployed,unempluzz
