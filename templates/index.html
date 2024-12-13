@@ -2,18 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uzz Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
 </head>
 <body>
-    <h1>Uzz Generator</h1>
-    <form action="/process" method="post" enctype="multipart/form-data">
-        <label for="file">Upload a text file:</label>
-        <input type="file" name="file" id="file" required>
-        <button type="submit">Process</button>
-    </form>
-    <a href="/manage_dictionary">Manage Custom Dictionary</a><br>
-    <a href="/manage_nouns">Manage Nouns</a>
+    <header>
+        <h1>Uzz Generator</h1>
+    </header>
+    <main>
+        <section class="card">
+            <h2>Enter Text to Transform</h2>
+            <form method="POST" action="/">
+                <textarea name="input_text" rows="5" placeholder="Enter text here..." required></textarea>
+                <button type="submit" class="btn-primary">Transform Text</button>
+            </form>
+        </section>
+        <section class="card">
+            <h2>Transformed Text</h2>
+            <div class="output">
+                {{ transformed_text }}
+            </div>
+        </section>
+        <section class="card">
+            <h2>Update Custom Dictionary</h2>
+            <form method="POST" action="/update_dictionary">
+                <input type="text" name="word" placeholder="Word" required>
+                <input type="text" name="replacement" placeholder="Replacement" required>
+                <button type="submit" class="btn-primary">Update Dictionary</button>
+            </form>
+            <h3>Current Dictionary</h3>
+            <ul>
+                {% for word, replacement in dictionary.items() %}
+                    <li>{{ word }} -> {{ replacement }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>Uzz Generator &copy; 2024</p>
+    </footer>
 </body>
 </html>

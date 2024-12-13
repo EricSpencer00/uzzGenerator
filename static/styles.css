@@ -31,6 +31,16 @@ main {
     gap: 2rem;
 }
 
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    resize: vertical;
+}
+
 .card {
     background: white;
     border-radius: 8px;
